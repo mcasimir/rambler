@@ -21,7 +21,7 @@
 #  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 module Rambler
-  module Routes
+  module Mapper
     extend ActiveSupport::Concern
     
     def mount_controller(con)
