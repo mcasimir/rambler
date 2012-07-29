@@ -1,11 +1,11 @@
 # Rambler - UnRESTful Rails controllers
 
-Rambler provides a Sinatra-like DSL that makes easy to write and manage non-RESTful controllers.
+**Rambler** provides a Sinatra-like DSL that makes easy to write and manage non-RESTful controllers.
  
 ## Installation
 
 ``` rb
-gem "rumbler"
+gem "rambler"
 ```
 
 ## Usage
