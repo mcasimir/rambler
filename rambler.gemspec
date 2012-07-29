@@ -19,13 +19,15 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.md",
     "Rakefile",
     "VERSION",
     "lib/rambler.rb",
     "lib/rambler/dsl.rb",
-    "lib/rambler/mapper.rb"
+    "lib/rambler/mapper.rb",
+    "rambler.gemspec"
   ]
   s.homepage = "http://github.com/mcasimir/rambler"
   s.licenses = ["MIT"]
