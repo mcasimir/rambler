@@ -20,23 +20,30 @@
 #  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 #  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+module Rambler
+  module Dsl
+    extend ActiveSupport::Concern
+    module ClassMethods
 
-require "rails"
+      def map(name, path, options = {}, &block)
+        options = {:via => :get, :as => name}.merge(options)
+        self.send(:define_method, name, &block)
+        @actions_map ||= []
+        @actions_map << {:name => name, :path => path, :options => options}
+      end
+      
+      def action(*args, &block)
+        if args.size > 1
+          map(*args, &block)
+        else
+          super(*args)
+        end
+      end
 
-module Rambler  
-end
-
-require "rambler/dsl"
-require "rambler/mapper"
-
-class ActionController::Base
-  include Rambler::DSL
-end
-
-module ActionDispatch
-  module Routing
-    class Mapper
-      include Rambler::Mapper
+      def mappings
+        @actions_map || []
+      end
+      
     end
   end
 end

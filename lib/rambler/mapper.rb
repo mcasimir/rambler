@@ -20,23 +20,23 @@
 #  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 #  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
-require "rails"
-
-module Rambler  
-end
-
-require "rambler/dsl"
-require "rambler/mapper"
-
-class ActionController::Base
-  include Rambler::DSL
-end
-
-module ActionDispatch
-  module Routing
-    class Mapper
-      include Rambler::Mapper
+module Rambler
+  module Routes
+    extend ActiveSupport::Concern
+    
+    def mount_controller(con)
+      
+      if con.is_a?(String) || con.is_a?(Symbol)
+        con = "#{con}_controller".camelize.constantize
+      end
+      
+      self.controller "site/site" do
+        con.mappings.each do |mapping|
+          options = mapping[:options].merge({ :action => mapping[:name] })
+          self.match mapping[:path], options
+        end
+      end
+      
     end
   end
 end
