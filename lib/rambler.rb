@@ -30,7 +30,7 @@ require "rambler/dsl"
 require "rambler/mapper"
 
 class ActionController::Base
-  include Rambler::DSL
+  include Rambler::Dsl
 end
 
 module ActionDispatch
