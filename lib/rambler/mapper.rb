@@ -25,18 +25,18 @@ module Rambler
     extend ActiveSupport::Concern
     
     def mount_controller(con)
+
+      controller_class = [@scope[:module],"#{con}_controller"].join("/").camelize.constantize
       
-      if con.is_a?(String) || con.is_a?(Symbol)
-        con = "#{con}_controller".camelize.constantize
-      end
-      
-      self.controller "site/site" do
-        con.mappings.each do |mapping|
+      self.controller(con) do
+        controller_class.mappings.each do |mapping|
           options = mapping[:options].merge({ :action => mapping[:name] })
           self.match mapping[:path], options
         end
       end
       
     end
+    
+
   end
 end
