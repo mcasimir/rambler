@@ -1,6 +1,6 @@
-# Rambler - UnRESTful Rails controllers
+# Rambler - A clean DSL to code non-resourceful Rails controllers
 
-**Rambler** provides a Sinatra-like DSL that makes easy to write and manage non-RESTful controllers.
+**Rambler** provides a Sinatra-like DSL making easy to code and mount _non-resourceful_ controllers.
  
 ## Installation
 
@@ -10,7 +10,7 @@ gem "rambler"
 
 ## Usage
 
-Create a non-RESTful controller
+Code your controller using `#action` method to define actions while inlining their routing settings.
 
 ``` rb
 # app/controllers/site/site_controller.rb
